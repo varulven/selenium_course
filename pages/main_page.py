@@ -9,6 +9,8 @@ class MainPage(BasePage):
         # login_link = self.find_element_by_css_selector("#login_link")
         login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         login_link.click()
+        # alert = self.browser.switch_to.alert #если добавили alert, который вызывается при клике на нужную нам ссылку
+        # alert.accept() #если добавили alert, который вызывается при клике на нужную нам ссылку
         # return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def should_be_login_link(self):
