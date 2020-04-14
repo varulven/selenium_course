@@ -10,11 +10,19 @@ class ProductPage(BasePage):
         button.click()
 
     def should_be_message_about_add_to_cart(self):
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_ABOUT_ITEM), "Message about item in cart is not " \
+                                                                                 "presented "
+
+    def should_be_message_about_price(self):
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_PRICE), "Message about price in cart is not " \
+                                                                            "presented "
+
+    def text_in_message_about_add_to_cart(self):
         item_name = self.browser.find_element(*ProductPageLocators.ITEM_NAME).text
         item_name_in_message = self.browser.find_element(*ProductPageLocators.MESSAGE_ABOUT_ITEM).text
         assert item_name == item_name_in_message, f"expected item_name is '{item_name}', but u got'{item_name_in_message}' "
 
-    def should_be_message_about_price(self):
+    def price_in_message_about_price(self):
         price = self.browser.find_element(*ProductPageLocators.PRICE).text
         price_in_cart = self.browser.find_element(*ProductPageLocators.MESSAGE_PRICE).text
-        assert price in price_in_cart, f"expected item_cost is '{price}', but u got in card'{price_in_cart}' "
+        assert price in price_in_cart, f"expected item_cost is '{price}', but u got in cart'{price_in_cart}' "
