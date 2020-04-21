@@ -51,6 +51,10 @@ class BasePage():
         button = self.browser.find_element(*BasePageLocators.SHOW_CART)
         button.click()
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
+
     def solve_quiz_and_get_code(self):
         try:
             alert = self.browser.switch_to.alert
