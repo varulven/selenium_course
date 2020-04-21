@@ -47,6 +47,10 @@ class BasePage():
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
+    def open_cart(self):
+        button = self.browser.find_element(*BasePageLocators.SHOW_CART)
+        button.click()
+
     def solve_quiz_and_get_code(self):
         try:
             alert = self.browser.switch_to.alert

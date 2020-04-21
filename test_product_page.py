@@ -1,7 +1,10 @@
 import time
 import os
 import pytest
+
+from conftest import browser
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 
 link1 = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 link2 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
@@ -63,3 +66,11 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()  # открываем страницу
     page.add_to_cart()
     page.should_disappeared_success_message()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = BasketPage(browser, link3)
+    page.open()
+    page.open_cart()
+    page.should_not_be_items_in_cart()
+    page.cart_has_no_items()
